@@ -1,7 +1,7 @@
 [
   {
     "title": "Quick Start",
-    "content": "Quick Start Install and try it in 2 minutes agent-click Computer use CLI for AI Agents. macOS — available now Windows — coming soon Linux — coming soon Agent-click lets you control desktop apps from the terminal. Click buttons, type into fields, read\n        what's on screen. All using a single CLI. Star it on GitHub How it works agent-click reads the accessibility tree — the same structure screen readers use. It sees every\n        button, text field, and menu item in any app. You point, it acts. Capture every interactive element. Each gets a ref. Use refs to click, type, or read. UI changed? Snapshot again for fresh refs. What can you do with it? Anything you'd do by clicking around:",
+    "content": "Quick Start Install and try it in 2 minutes agent-click Computer use CLI for AI Agents. macOS — available now Windows — coming soon Linux — coming soon Agent-click lets you control desktop apps from the terminal. Click buttons, type into\n        fields, read what&apos;s on screen. All using a single CLI. Star it on GitHub How it works agent-click reads the accessibility tree — the same structure screen readers use. It sees\n        every button, text field, and menu item in any app. You point, it acts. Capture every interactive element. Each gets a ref. Use refs to click, type, or read. UI changed? Snapshot again for fresh refs. What can you do with it? Anything you&apos;d do by clicking around:",
     "href": "/",
     "pageTitle": "Quick Start"
   },
@@ -22,6 +22,12 @@
     "content": "- Selectors — target elements by role, name, ID, or CSS - Commands — full reference for all 25 commands - Background Ops — understand headless vs focus-required actions",
     "href": "/quickstart",
     "pageTitle": "Quick Start"
+  },
+  {
+    "title": "Installation",
+    "content": "title=\"Installation\" description=\"Get agent-click running in under a minute. Currently macOS only — Windows and Linux support is underway.\" />",
+    "href": "/installation#quick-setup-recommended",
+    "pageTitle": "Installation"
   },
   {
     "title": "Quick setup (recommended)",
@@ -76,6 +82,12 @@
     "content": "- Use -i -c for AI workflows — 10x less output - Use -d 8 for deep UIs (Safari web content, complex forms) - Don't reuse refs across snapshots — always re-snapshot - Refs from one app don't work for another app",
     "href": "/snapshots",
     "pageTitle": "Snapshots & Refs"
+  },
+  {
+    "title": "Selectors",
+    "content": "title=\"Selectors\" description=\"Target elements by role, name, ID, CSS, or combinations.\" />",
+    "href": "/selectors#refs-fastest",
+    "pageTitle": "Selectors"
   },
   {
     "title": "Refs (fastest)",
@@ -133,13 +145,13 @@
   },
   {
     "title": "Native apps (macOS)",
-    "content": "Action   Headless?   Method Click (single)   Yes   AXPress Type with selector   Yes   AXSetValue Read text   Yes   Accessibility tree Snapshot   Yes   Accessibility tree Get value   Yes   Accessibility tree Move window   Yes   AXSetPosition Resize window   Yes   AXSetSize Scroll to element   Yes   AXScrollToVisible Key press   No   CGEvent (needs focus) Scroll direction   No   CGEvent (needs focus) Double-click   No   Mouse simulation Right-click   No   Mouse simulation Drag   No   Mouse simulation Screenshot   No   Needs visible window",
+    "content": "Action               Headless?   Method Click (single)       Yes         AXPress Type with selector   Yes         AXSetValue Read text            Yes         Accessibility tree Snapshot             Yes         Accessibility tree Get value            Yes         Accessibility tree Move window          Yes         AXSetPosition Resize window        Yes         AXSetSize Scroll to element    Yes         AXScrollToVisible Key press            No          CGEvent (needs focus) Scroll direction     No          CGEvent (needs focus) Double-click         No          Mouse simulation Right-click          No          Mouse simulation Drag                 No          Mouse simulation Screenshot           No          Needs visible window",
     "href": "/background#electron-apps-cdp",
     "pageTitle": "Background Operation"
   },
   {
     "title": "Electron apps (CDP)",
-    "content": "Action   Headless?   Method Click   Yes   JS element.click() Type   Yes   Input.insertText Key press   Yes   Input.dispatchKeyEvent Scroll   Yes   JS scrollBy() Read text   Yes   document.body.innerText Snapshot   Yes   DOM walker via Runtime.evaluate Screenshot   No   Needs visible window",
+    "content": "Action       Headless?   Method Click        Yes         JS element.click() Type         Yes         Input.insertText Key press    Yes         Input.dispatchKeyEvent Scroll       Yes         JS scrollBy() Read text    Yes         document.body.innerText Snapshot     Yes         DOM walker via Runtime.evaluate Screenshot   No          Needs visible window",
     "href": "/background#how-axpress-works",
     "pageTitle": "Background Operation"
   },
@@ -157,55 +169,55 @@
   },
   {
     "title": "Interaction",
-    "content": "Command   Description agent-click click [selector] -a App   Click an element (AXPress, no focus steal) agent-click type \"text\" -s @e3   Clear and type into a field (AXSetValue) agent-click type \"text\" -a App   Type into focused field (keyboard sim) agent-click key cmd+k -a Slack   Press a key or combo agent-click scroll down -a Music   Scroll within an app agent-click scroll-to @e42   Scroll element into view (headless) agent-click drag @e5 @e10 -a Finder   Drag from one element to another",
+    "content": "Command                                 Description agent-click click [selector] -a App   Click an element (AXPress, no focus steal) agent-click type \"text\" -s @e3        Clear and type into a field (AXSetValue) agent-click type \"text\" -a App        Type into focused field (keyboard sim) agent-click key cmd+k -a Slack        Press a key or combo agent-click scroll down -a Music      Scroll within an app agent-click scroll-to @e42            Scroll element into view (headless) agent-click drag @e5 @e10 -a Finder   Drag from one element to another",
     "href": "/commands#discovery",
     "pageTitle": "Commands"
   },
   {
     "title": "Discovery",
-    "content": "Command   Description agent-click snapshot -a App -i -c   Get accessibility tree with refs agent-click find 'selector' -a App   Find elements matching a selector agent-click get-value @e5   Get element value, name, role, position agent-click text -a App   Get all visible text agent-click tree -a App   Raw accessibility tree (JSON) agent-click windows -a App   List windows with positions agent-click apps   List running applications agent-click focused   Get the focused element",
+    "content": "Command                                Description agent-click snapshot -a App -i -c    Get accessibility tree with refs agent-click find 'selector' -a App   Find elements matching a selector agent-click get-value @e5            Get element value, name, role, position agent-click text -a App              Get all visible text agent-click tree -a App              Raw accessibility tree (JSON) agent-click windows -a App           List windows with positions agent-click apps                     List running applications agent-click focused                  Get the focused element",
     "href": "/commands#window-management",
     "pageTitle": "Commands"
   },
   {
     "title": "Window Management",
-    "content": "Command   Description agent-click open App --wait   Launch an application agent-click move-window -a App --x 100 --y 100   Move window position (headless) agent-click resize-window -a App --width 800 --height 600   Resize window (headless) agent-click screenshot -a App --path shot.png   Take a screenshot",
+    "content": "Command                                                       Description agent-click open App --wait                                 Launch an application agent-click move-window -a App --x 100 --y 100              Move window position (headless) agent-click resize-window -a App --width 800 --height 600   Resize window (headless) agent-click screenshot -a App --path shot.png               Take a screenshot",
     "href": "/commands#wait-verify",
     "pageTitle": "Commands"
   },
   {
     "title": "Wait & Verify",
-    "content": "Command   Description agent-click wait-for 'selector'   Wait for an element to appear agent-click ensure-text @e3 \"hello\"   Only types if current value differs agent-click click @e5 --expect 'name=\"Done\"'   Click then verify a result appeared",
+    "content": "Command                                          Description agent-click wait-for 'selector'                Wait for an element to appear agent-click ensure-text @e3 \"hello\"            Only types if current value differs agent-click click @e5 --expect 'name=\"Done\"'   Click then verify a result appeared",
     "href": "/commands#automation",
     "pageTitle": "Commands"
   },
   {
     "title": "Automation",
-    "content": "Command   Description agent-click batch --bail   Execute commands from stdin JSON array agent-click run workflow.yaml   Run a multi-step YAML workflow agent-click observe -a App   Interactive TUI tree explorer",
+    "content": "Command                           Description agent-click batch --bail        Execute commands from stdin JSON array agent-click run workflow.yaml   Run a multi-step YAML workflow agent-click observe -a App      Interactive TUI tree explorer",
     "href": "/commands#system",
     "pageTitle": "Commands"
   },
   {
     "title": "System",
-    "content": "Command   Description agent-click check-permissions   Verify accessibility access",
+    "content": "Command                           Description agent-click check-permissions   Verify accessibility access",
     "href": "/commands#snapshot-options",
     "pageTitle": "Commands"
   },
   {
     "title": "Snapshot Options",
-    "content": "Option   Description -a, --app   Target application -i, --interactive   Only interactive elements (buttons, inputs, links) -c, --compact   Remove empty structural elements -d, --depth   Limit tree depth",
+    "content": "Option                Description -a, --app           Target application -i, --interactive   Only interactive elements (buttons, inputs, links) -c, --compact       Remove empty structural elements -d, --depth         Limit tree depth",
     "href": "/commands#global-options",
     "pageTitle": "Commands"
   },
   {
     "title": "Global Options",
-    "content": "Option   Description --human   Human-readable output --compact   Compact single-line JSON --timeout <s>   Global timeout in seconds (default: 5) -v, --verbose   Debug traces --cdp   Force CDP mode for Electron apps --cdp-port <port>   Override CDP port --no-cdp   Disable CDP auto-detection",
+    "content": "Option                Description --human             Human-readable output --compact           Compact single-line JSON --timeout <s>       Global timeout in seconds (default: 5) -v, --verbose       Debug traces --cdp               Force CDP mode for Electron apps --cdp-port <port>   Override CDP port --no-cdp            Disable CDP auto-detection",
     "href": "/commands",
     "pageTitle": "Commands"
   },
   {
     "title": "Options",
-    "content": "Option   Description [SELECTOR]   Selector DSL or @ref -a, --app   Target application --count   Number of clicks (2 = double-click) --button   Mouse button: left (default), right, middle --x, --y   Coordinate click (last resort) --expect   Verify this element appears after clicking",
+    "content": "Option         Description [SELECTOR]   Selector DSL or @ref -a, --app    Target application --count      Number of clicks (2 = double-click) --button     Mouse button: left (default), right, middle --x, --y     Coordinate click (last resort) --expect     Verify this element appears after clicking",
     "href": "/commands/click#how-it-works",
     "pageTitle": "click"
   },
@@ -235,7 +247,7 @@
   },
   {
     "title": "Options",
-    "content": "Option   Description <TEXT>   Text to type (required, positional) -s, --selector   Target element (selector DSL or @ref) -a, --app   Target application (for keyboard fallback) --submit   Press Return after typing --append   Append instead of clearing first --expect   Verify element appears after typing",
+    "content": "Option             Description <TEXT>           Text to type (required, positional) -s, --selector   Target element (selector DSL or @ref) -a, --app        Target application (for keyboard fallback) --submit         Press Return after typing --append         Append instead of clearing first --expect         Verify element appears after typing",
     "href": "/commands/type#two-modes",
     "pageTitle": "type"
   },
@@ -265,7 +277,7 @@
   },
   {
     "title": "Options",
-    "content": "Option   Description -a, --app   Target application -i, --interactive   Only show interactive elements (buttons, inputs, links) -c, --compact   Skip empty structural elements -d, --depth   Limit tree traversal depth",
+    "content": "Option                Description -a, --app           Target application -i, --interactive   Only show interactive elements (buttons, inputs, links) -c, --compact       Skip empty structural elements -d, --depth         Limit tree traversal depth",
     "href": "/commands/snapshot#examples",
     "pageTitle": "snapshot"
   },
@@ -355,7 +367,7 @@
   },
   {
     "title": "Output format",
-    "content": "Flag   Description (default)   JSON output --human   Human-readable output --compact   Compact single-line JSON",
+    "content": "Flag          Description (default)     JSON output --human     Human-readable output --compact   Compact single-line JSON",
     "href": "/options#timeout",
     "pageTitle": "Global Options"
   },
@@ -373,7 +385,7 @@
   },
   {
     "title": "CDP flags",
-    "content": "Flag   Description --cdp   Force CDP mode (even for non-Electron apps) --cdp-port <port>   Override the auto-detected CDP port --no-cdp   Disable CDP entirely, use native accessibility only CDP is automatic for Electron apps — you rarely need these flags. They're power-user overrides.",
+    "content": "Flag                  Description --cdp               Force CDP mode (even for non-Electron apps) --cdp-port <port>   Override the auto-detected CDP port --no-cdp            Disable CDP entirely, use native accessibility only CDP is automatic for Electron apps — you rarely need these flags. They're power-user overrides.",
     "href": "/options",
     "pageTitle": "Global Options"
   }

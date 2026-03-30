@@ -11,15 +11,15 @@ export default function Home() {
         <h1 className="text-5xl mb-2 font-bold tracking-tight">agent-click</h1>
         <p className="mt-2 text-lg text-muted-foreground">Computer use CLI for AI Agents.</p>
         <div className="mt-3 flex gap-2">
-          <span className="inline-flex items-center rounded-full bg-foreground/10 px-3 py-1 text-xs font-medium text-foreground">
+          <div className="inline-flex items-center rounded-full bg-foreground/10 px-3 py-1 text-xs font-medium text-foreground">
             macOS — available now
-          </span>
-          <span className="inline-flex items-center rounded-full border border-border px-3 py-1 text-xs font-medium text-muted-foreground">
+          </div>
+          <div className="inline-flex items-center rounded-full border border-border px-3 py-1 text-xs font-medium text-muted-foreground">
             Windows — coming soon
-          </span>
-          <span className="inline-flex items-center rounded-full border border-border px-3 py-1 text-xs font-medium text-muted-foreground">
+          </div>
+          <div className="inline-flex items-center rounded-full border border-border px-3 py-1 text-xs font-medium text-muted-foreground">
             Linux — coming soon
-          </span>
+          </div>
         </div>
       </div>
 
