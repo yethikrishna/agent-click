@@ -639,6 +639,17 @@ impl Platform for MacOSPlatform {
     fn platform_name(&self) -> &'static str {
         "macOS"
     }
+
+    fn get_display_scale(&self) -> f64 {
+        let display = core_graphics::display::CGDisplay::main();
+        let physical_width = display.pixels_wide() as f64;
+        let logical_width = display.bounds().size.width as f64;
+        if logical_width > 0.0 {
+            physical_width / logical_width
+        } else {
+            1.0
+        }
+    }
 }
 
 fn find_best_scroll_point(pid: i32) -> Option<agent_click_core::node::Point> {

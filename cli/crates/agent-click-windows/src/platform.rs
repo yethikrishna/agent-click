@@ -488,6 +488,10 @@ mod real {
             }
         }
 
+        fn get_display_scale(&self) -> f64 {
+            unsafe { windows::Win32::UI::HiDpi::GetDpiForSystem() as f64 / 96.0 }
+        }
+
         fn platform_name(&self) -> &'static str {
             "Windows"
         }

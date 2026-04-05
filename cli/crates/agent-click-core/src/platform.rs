@@ -33,6 +33,10 @@ pub trait Platform: Send + Sync {
 
     async fn check_permissions(&self) -> Result<bool>;
 
+    fn get_display_scale(&self) -> f64 {
+        1.0
+    }
+
     async fn activate(&self, _app: &str) -> Result<()> {
         Ok(())
     }
