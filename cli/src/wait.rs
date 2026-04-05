@@ -57,6 +57,47 @@ pub async fn poll_for_one_element(
     }
 }
 
+pub async fn poll_for_stability(
+    platform: &dyn Platform,
+    chain: &SelectorChain,
+    initial_node: AccessibilityNode,
+    timeout: Duration,
+) -> agent_click_core::Result<AccessibilityNode> {
+    let start = Instant::now();
+    let mut current_node = initial_node;
+    let poll_interval = Duration::from_millis(50);
+
+    loop {
+        tokio::time::sleep(poll_interval).await;
+        
+        let next_node = match find_one_by_chain(platform, chain).await {
+            Ok(n) => n,
+            Err(_) => {
+                if start.elapsed() >= timeout {
+                    return Err(Error::Timeout {
+                        seconds: timeout.as_secs_f64(),
+                        message: "element did not stabilize within timeout".into(),
+                    });
+                }
+                continue; // Element might temporarily disappear during animation
+            }
+        };
+
+        if current_node.position == next_node.position && current_node.size == next_node.size {
+            return Ok(next_node);
+        }
+
+        current_node = next_node;
+
+        if start.elapsed() >= timeout {
+            return Err(Error::Timeout {
+                seconds: timeout.as_secs_f64(),
+                message: "element did not stabilize within timeout".into(),
+            });
+        }
+    }
+}
+
 pub async fn find_by_chain(
     platform: &dyn Platform,
     chain: &SelectorChain,

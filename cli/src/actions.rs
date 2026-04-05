@@ -52,7 +52,8 @@ pub async fn find_element(
     chain: &SelectorChain,
     timeout: Duration,
 ) -> agent_click_core::Result<agent_click_core::AccessibilityNode> {
-    wait::poll_for_one_element(platform, chain, timeout, POLL_INTERVAL).await
+    let initial_node = wait::poll_for_one_element(platform, chain, timeout, POLL_INTERVAL).await?;
+    wait::poll_for_stability(platform, chain, initial_node, timeout).await
 }
 
 fn selector_from_node(
@@ -180,10 +181,14 @@ pub async fn click(
     if let Some(ref app_name) = chain.first().app {
         platform.activate(app_name).await?;
     }
+    let scale = platform.get_display_scale();
     platform
         .perform(&Action::Click {
             selector: None,
-            coordinates: Some(center),
+            coordinates: Some(agent_click_core::node::Point {
+                x: center.x / scale,
+                y: center.y / scale,
+            }),
             button,
             count,
         })
@@ -316,10 +321,14 @@ pub async fn type_into(
     }
 
     if let Some(center) = node.center() {
+        let scale = platform.get_display_scale();
         platform
             .perform(&Action::Click {
                 selector: None,
-                coordinates: Some(center),
+                coordinates: Some(agent_click_core::node::Point {
+                    x: center.x / scale,
+                    y: center.y / scale,
+                }),
                 button: MouseButton::Left,
                 count: 1,
             })

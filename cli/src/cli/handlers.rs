@@ -174,6 +174,16 @@ pub async fn run(
                 platform.activate(app_name).await?;
             }
 
+            let scale = platform.get_display_scale();
+            let from_point = Point {
+                x: from_point.x / scale,
+                y: from_point.y / scale,
+            };
+            let to_point = Point {
+                x: to_point.x / scale,
+                y: to_point.y / scale,
+            };
+
             let result = platform
                 .perform(&Action::Drag {
                     from: from_point,
