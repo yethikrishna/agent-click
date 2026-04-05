@@ -17,3 +17,7 @@ tracing = { workspace = true }
 core-foundation = "0.10"
 core-graphics = "0.24"
 foreign-types = "0.5"
+
+[[bin]]
+name = "bin_test"
+path = "src/bin_test.rs"
