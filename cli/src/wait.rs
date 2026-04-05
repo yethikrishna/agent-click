@@ -42,7 +42,7 @@ pub async fn poll_for_one_element(
     loop {
         match find_one_by_chain(platform, chain).await {
             Ok(node) => return Ok(node),
-            Err(Error::ElementNotFound { .. }) => {}
+            Err(Error::ElementNotFound { .. }) | Err(Error::AmbiguousSelector { .. }) => {}
             Err(e) => return Err(e),
         }
 

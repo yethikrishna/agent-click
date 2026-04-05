@@ -165,6 +165,7 @@ pub async fn click(
         })?;
 
     agent_click_core::element::check_visible(&node)?;
+    agent_click_core::element::check_enabled(&node)?;
 
     if count > 1 || button != MouseButton::Left {
         tracing::debug!(
@@ -228,6 +229,8 @@ pub async fn type_into(
 
     let node = find_element(platform, chain, timeout).await?;
     tracing::debug!("type target: {:?} at {:?}", node.name, node.position);
+
+    agent_click_core::element::check_enabled(&node)?;
 
     let set_sel = selector_from_node(&node, chain);
 
@@ -305,6 +308,8 @@ pub async fn type_into(
     }
 
     tracing::debug!("using keyboard simulation — requires window activation");
+
+    agent_click_core::element::check_visible(&node)?;
 
     if let Some(ref app_name) = chain.first().app {
         platform.activate(app_name).await?;
