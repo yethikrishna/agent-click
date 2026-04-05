@@ -221,7 +221,9 @@ pub fn drag(from: Point, to: Point, target_pid: Option<i32>) -> Result<()> {
     post_event(&mouse_down, target_pid);
     std::thread::sleep(std::time::Duration::from_millis(100));
 
-    let steps = 20;
+    let distance = ((to.x - from.x).powi(2) + (to.y - from.y).powi(2)).sqrt();
+    let steps = (distance / 10.0).clamp(20.0, 100.0) as i32;
+
     for i in 1..=steps {
         let t = i as f64 / steps as f64;
         let t_smooth = t * t * (3.0 - 2.0 * t);

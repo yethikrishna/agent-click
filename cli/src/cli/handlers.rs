@@ -133,6 +133,7 @@ pub async fn run(
             let from_point = if let Some(sel) = from {
                 let chain = actions::parse_selector_with_app(&sel, app.as_deref())?;
                 let node = actions::find_element(platform, &chain, timeout).await?;
+                agent_click_core::element::check_visible(&node)?;
                 node.center()
                     .ok_or_else(|| agent_click_core::Error::PlatformError {
                         message: "drag source has no position".into(),
@@ -152,6 +153,7 @@ pub async fn run(
             let to_point = if let Some(sel) = to {
                 let chain = actions::parse_selector_with_app(&sel, app.as_deref())?;
                 let node = actions::find_element(platform, &chain, timeout).await?;
+                agent_click_core::element::check_visible(&node)?;
                 node.center()
                     .ok_or_else(|| agent_click_core::Error::PlatformError {
                         message: "drag target has no position".into(),

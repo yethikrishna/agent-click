@@ -45,12 +45,14 @@ pub fn check_visible(node: &AccessibilityNode) -> Result<()> {
                 });
             }
             if pos.x < 0.0 || pos.y < 0.0 {
-                tracing::warn!(
-                    "element {:?} may be offscreen (position: {:.0}, {:.0})",
-                    node.name.as_deref().unwrap_or("(unnamed)"),
-                    pos.x,
-                    pos.y
-                );
+                return Err(Error::PlatformError {
+                    message: format!(
+                        "element {:?} is offscreen (position: {:.0}, {:.0})",
+                        node.name.as_deref().unwrap_or("(unnamed)"),
+                        pos.x,
+                        pos.y
+                    ),
+                });
             }
             Ok(())
         }
@@ -61,6 +63,18 @@ pub fn check_visible(node: &AccessibilityNode) -> Result<()> {
             ),
         }),
     }
+}
+
+pub fn check_enabled(node: &AccessibilityNode) -> Result<()> {
+    if let Some(false) = node.enabled {
+        return Err(Error::PlatformError {
+            message: format!(
+                "element {:?} is disabled",
+                node.name.as_deref().unwrap_or("(unnamed)")
+            ),
+        });
+    }
+    Ok(())
 }
 
 pub fn rank(node: &AccessibilityNode) -> (i32, i32, i32) {
